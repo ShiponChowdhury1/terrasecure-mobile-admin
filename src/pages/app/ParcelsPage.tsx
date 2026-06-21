@@ -353,10 +353,22 @@ const ParcelsPage = () => {
   const [currentPage, setCurrentPage] = useState(1)
   const pageSize = 5
 
-  // Reset pagination on filter change
-  useEffect(() => {
+  const handleSearchChange = (val: string) => {
+    setSearchQuery(val)
     setCurrentPage(1)
-  }, [searchQuery, statusFilter, cityFilter, dateFilter])
+  }
+  const handleStatusChange = (val: string) => {
+    setStatusFilter(val)
+    setCurrentPage(1)
+  }
+  const handleCityChange = (val: string) => {
+    setCityFilter(val)
+    setCurrentPage(1)
+  }
+  const handleDateChange = (val: string) => {
+    setDateFilter(val)
+    setCurrentPage(1)
+  }
 
   // Filter logic
   const filteredParcels = parcels.filter((parcel) => {
@@ -542,7 +554,7 @@ const ParcelsPage = () => {
                 type="text"
                 placeholder="Search parcels..."
                 value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
+                onChange={(e) => handleSearchChange(e.target.value)}
                 className="w-full pl-9 pr-4 py-2 border border-slate-200 bg-slate-50/40 rounded-lg text-sm text-title placeholder:text-slate-400 focus:border-button-color focus:bg-white focus:outline-none focus:ring-2 focus:ring-button-color/20 transition-all font-semibold leading-relaxed"
               />
             </div>
@@ -553,7 +565,7 @@ const ParcelsPage = () => {
               header="All Statuses"
               options={['All', 'Published', 'Reserved', 'Disputed', 'Sold', 'Draft', 'Blocked', 'Under Verification', 'Validated']}
               selected={statusFilter}
-              onSelect={setStatusFilter}
+              onSelect={handleStatusChange}
             />
 
             {/* Custom Filter "All Cities" */}
@@ -562,16 +574,15 @@ const ParcelsPage = () => {
               header="All Cities"
               options={['All', 'Yaoundé', 'Douala', 'Bamenda', 'Bafoussam', 'Garoua', 'Maroua']}
               selected={cityFilter}
-              onSelect={setCityFilter}
+              onSelect={handleCityChange}
             />
 
-            {/* Custom Filter "Date Range" */}
             <CustomFilterDropdown
               label="Date Range"
               header="Date Range"
               options={['Date Range', 'This Week', 'This Month', 'This Year']}
               selected={dateFilter}
-              onSelect={setDateFilter}
+              onSelect={handleDateChange}
             />
           </div>
 

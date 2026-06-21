@@ -78,7 +78,7 @@ const AdminSidebar = ({
         }
     ]
 
-    const SidebarContent = () => (
+    const renderSidebarContent = () => (
         <div className="flex flex-col h-full bg-[#1A2332] text-subtitle">
             {/* Brand Header */}
             <div className="flex items-center justify-between h-16 px-4 border-b border-slate-800">
@@ -210,7 +210,7 @@ const AdminSidebar = ({
                     collapsed ? "w-16" : "w-64"
                 )}
             >
-                <SidebarContent />
+                {renderSidebarContent()}
             </aside>
 
             {/* Mobile Sidebar Overlay Drawer */}
@@ -228,7 +228,7 @@ const AdminSidebar = ({
                     )}
                     onClick={(e) => e.stopPropagation()}
                 >
-                    <SidebarContent />
+                    {renderSidebarContent()}
                 </aside>
             </div>
         </>
