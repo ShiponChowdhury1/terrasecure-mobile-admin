@@ -2,6 +2,7 @@
 import React, { useEffect, useRef } from 'react'
 import { AlertCircle, FileText, CheckCircle2 } from 'lucide-react'
 import { cn } from '@/lib/utils'
+import { useRouter } from 'next/navigation'
 
 interface NotificationsDropdownProps {
   isOpen: boolean
@@ -10,6 +11,7 @@ interface NotificationsDropdownProps {
 }
 
 const NotificationsDropdown = ({ isOpen, onClose, className }: NotificationsDropdownProps) => {
+  const router = useRouter()
   const dropdownRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
@@ -118,7 +120,7 @@ const NotificationsDropdown = ({ isOpen, onClose, className }: NotificationsDrop
         <button
           onClick={() => {
             onClose()
-            alert('Navigate to Notifications Page')
+            router.push('/notifications')
           }}
           className="text-xs text-button-color hover:underline font-medium block w-full py-1"
         >
