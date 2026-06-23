@@ -1,6 +1,6 @@
 "use client"
 import React, { useState } from 'react'
-import { Plus, Search, Key, ShieldCheck, X, FileText, Clipboard } from 'lucide-react'
+import { Plus, Search, Key, ShieldCheck, X, FileText, Clipboard, Trash2, Check } from 'lucide-react'
 import { cn } from '@/lib/utils'
 
 interface ApiKeyItem {
@@ -262,8 +262,8 @@ const ApiIntegrations = () => {
               <div className="space-y-2">
                 <label className="text-xs font-bold text-slate-700 block">Select Scope Scopes</label>
                 <div className="grid grid-cols-2 gap-2 bg-slate-50/50 border border-slate-100 rounded-xl p-3">
-                  {Object.keys(selectedScopes).map((scope) => {
-                    const isChecked = (selectedScopes as any)[scope]
+                  {(Object.keys(selectedScopes) as Array<keyof typeof selectedScopes>).map((scope) => {
+                    const isChecked = selectedScopes[scope]
                     return (
                       <button
                         key={scope}
